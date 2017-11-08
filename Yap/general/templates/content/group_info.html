@@ -1,0 +1,24 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <p>{{ currentGroup.name }}</p>
+  <p>{{ currentGroup.description }}</p>
+
+  {% for member in members %}
+    <p>
+      {{ member.user.username }}
+      {% if member.status == 2 %}
+        - Host
+      {% endif %}
+      {% if host.user == currentUser %}
+        {% if member.status == 1 %}
+          <a href="{% url 'select_host_member' member.group.id member.user.username %}"> Set as host</a>
+        {% endif %}
+      {% endif %}
+    </p>
+  {% endfor %}
+  <p>
+    <a href="{% url 'leave_group' currentGroup.id %}">Leave the group</a>
+  </p>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <h2 class="page-header">{{ currentUser.username }} - Accounts</h2>
+  <div>
+    <p><a href="{% url 'synapse_login' %}">Link Account (login)</a></p>
+    <p><a href="{% url 'synapse_account' %}">Link Account (AN/RN)</a></p>
+    {% for account in listedAccounts %}
+      <p>
+        {{ account.name }} - {{ account.account_class }} - {{ account.balance }}
+        {% if account.main == 1 %}
+          <a href="{% url 'set_default_account' account.id %}"> Set as Default </a>
+        {% endif %}
+        {% if account.main == 2 %}
+          <strong> (Default)</strong>
+        {% endif %}
+      </p>
+    {% endfor %}
+  </div>
+
+{% endblock %}

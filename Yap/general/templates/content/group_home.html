@@ -1,0 +1,35 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <h2 class="page-header align-center-item">{{ group.group.name }} <a href="{% url 'group_info' group.group.id %}">I</a> </h2>
+  {% if currentUser == host.user %}
+    <p class="align-center-item">
+      <a href="{% url 'add_expense' currentGroup.id %}">Add Expense</a>
+      <a href="{% url 'create_checklist' currentGroup.id %}">Create Checklist</a>
+    </p>
+    <div class="scrollable-view-host">
+  {% endif %}
+  {% if currentUser != host.user %}
+    <div class="scrollable-view-full">
+  {% endif %}
+  {% for activity in activities %}
+    {% if activity.user == currentUser %}
+      {% if activity.general == 2 %}
+        <p class="align-right-item align-margin-right">
+          {{ activity.description }}
+          {% if activity.validation == 2 %}
+            <a href="{% url 'verify_expense' activity.expense.id activity.id %}">Y</a>
+          {% endif %}
+        </p>
+      {% endif %}
+    {% endif %}
+    {% if activity.user != currentUser %}
+      {% if activity.general == 1 %}
+        <p class="align-margin-left">
+          {{ activity.description }}
+        </p>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  </div>
+{% endblock %}

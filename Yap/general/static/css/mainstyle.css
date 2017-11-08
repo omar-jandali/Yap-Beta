@@ -1,0 +1,97 @@
+.backgrounded {
+  background-color: white ;
+}
+
+.content-backgroun {
+  background-color: white;
+}
+
+.no-padding {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.border-padding {
+  padding: 8px;
+}
+
+.align-center-item {
+  text-align: center;
+  align-items: center;
+}
+
+.align-right-item {
+  text-align: right;
+  align-items: right;
+}
+
+.align-margin-right {
+  margin-right: 15px;
+}
+
+.align-margin-left {
+  margin-left: 10px;
+}
+
+.align-center-v {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.solid-borders {
+  border-bottom: 1px solid black;
+}
+
+.header-icon-size {
+  height: 42px !important;
+}
+
+.icon-margins {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+.full-height {
+  height: 100vh;
+}
+
+.small-margin-left {
+  margin-left: 50px;
+}
+
+.fixed-position {
+  position: fixed;
+}
+
+.page-header {
+  margin-top: 10px;
+}
+
+.scrollable-view-full {
+  width: 100% !important;
+  margin-top: 10px !important;
+  margin-bottom: 10px !important;
+  max-height: 84vh !important;
+  overflow-y: scroll !important;
+}
+
+.scrollable-view-host {
+  width: 100% !important;
+  margin-top: 14px !important;
+  margin-bottom: 10px !important;
+  max-height: 80vh !important;
+  overflow-y: scroll !important;
+}
+
+.scrollable-view-expenses {
+  width: 100% !important;
+  margin-top: 14px !important;
+  margin-bottom: 10px !important;
+  max-height: 79vh !important;
+  overflow-y: scroll !important;
+}
+
+.content-max-height {
+  height: 90vh !important;
+  overflow-y: hidden !important;
+}

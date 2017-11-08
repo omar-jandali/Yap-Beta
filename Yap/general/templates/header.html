@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block standard %}
+<div class="row solid-borders">
+  <div class=" col-md-1 border-padding">
+    <img src="{% static 'images/Yap-Logo-6.png'%}" class="header-icon-size" alt="">
+  </div>
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-2 align-center-item align-center-v">
+    <form action="{% url 'user_search' %}" method="POST">
+      {% csrf_token %}
+      <input type="text" name="searched" placeholder="Search">
+    </form>
+  </div>
+  <div class="col-md-2 align-center-item border-padding">
+    <a href="{% url 'user_groups' %}">
+      <img src="{% static 'images/groups.png'%}" class="header-icon-size icon-margins" alt="">
+    </a>
+    <a href="{% url 'user_expenses' %}">
+      <img src="{% static 'images/transaction.png'%}" class="header-icon-size icon-margins" alt="">
+    </a>
+    <a href="{% url 'user_accounts' %}">
+      <img src="{% static 'images/accounts.png'%}" class="header-icon-size icon-margins" alt="">
+    </a>
+  </div>
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-1 border-padding align-right-item">
+    <a href="{% url 'user_home' %}">
+      <img src="{% static 'images/user.png'%}" class="header-icon-size" alt="">
+    </a>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+  </div>
+  <div class="col-md-4">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <div class="col-md-4">
+  </div>
+</div>
+{% endblock %}

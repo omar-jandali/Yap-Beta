@@ -1,0 +1,29 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <h2>Add expense - {{ currentGroup.name }}</h2>
+  {% if message %}
+    <p>{{message}}</p>
+  {% endif %}
+  <form action="." method="POST">
+    {{ form.management_form }}
+    {% csrf_token %}
+    {% for f in form %}
+       {% for expense in expenses %}
+           {% if forloop.parentloop.counter == forloop.counter %}
+              <p>{{ expense.user.username }}</p>
+           {% endif %}
+       {% endfor %}
+       {{ f.as_p }}
+    {% endfor %}
+    <p>
+      Tax:
+      <input type="number" name="tax" value="0.00">
+    </p>
+    <p>
+      Tip:
+      <input type="number" name="tip" value="0.00">
+    </p>
+    <input type="submit" name="submit" value="submit">
+  </form>
+{% endblock %}

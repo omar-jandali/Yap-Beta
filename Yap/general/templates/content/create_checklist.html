@@ -1,0 +1,19 @@
+{% extends "header.html" %}
+
+{% block content %}
+<h1>Create a Checklist</h1>
+{% if message %}
+  <p>{{message}}</p>
+{% endif %}
+<form action="." method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% for member in members %}
+    <p>
+      {{ member.user.username }}
+      <input type="checkbox" name="{{ member.user.username }}" value="{{ member.user.username}}">
+    </p>
+  {% endfor %}
+  <input type="submit" name="submit" value="submit">
+</form>
+{% endblock %}

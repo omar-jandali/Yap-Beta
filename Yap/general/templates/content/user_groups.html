@@ -1,0 +1,18 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <h1 class="page-header align-center-item">Groups</h1>
+  <div class="">
+    {% for member in members %}
+      <a href="{% url 'group_home' member.group.id %}">
+        <p>{{ member.group.name }}</p>
+      </a>
+    {% endfor %}
+  </div>
+  <p>
+    <a href="{% url 'create_group' %}">
+      new group
+    </a>
+  </p>
+  <a href="{% url 'logout' %}">Logout</a>
+{% endblock %}

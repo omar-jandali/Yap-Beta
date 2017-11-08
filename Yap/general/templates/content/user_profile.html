@@ -1,0 +1,32 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+  <p>{{ viewedUser.username }}
+  {% if friends == None %}
+    {% if viewedUser != currentUser %}
+      <a href="{% url 'send_request' viewedUser.username %}">Send Request</a>
+    {% endif %}
+  {% endif %}
+  </p>
+  <p>{{ viewedProfile.first_name }} {{ viewedProfile.last_name }}</p>
+  <p>{{ viewedUser.email }}</p>
+  <p>{{ viewedProfile.bio }}</p>
+
+  <p>{{ viewedProfile.phone }}</p>
+  <p>{{ viewedProfile.dob }}</p>
+  <p>{{ viewedProfile.street }}</p>
+  <p>{{ viewedProfile.city }}</p>
+  <p>{{ viewedProfile.state }}</p>
+  <p>{{ viewedProfile.zip_code }}</p>
+  <ul>
+    {% for item in activity %}
+      {% if item.category == 1 %}
+        <li>{{ item.description }} - {{ item.category }}</li>
+      {% endif %}
+      {% if item.category == 2 %}
+        <li>{{ item.description }} - {{ item.category }}</li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endblock %}

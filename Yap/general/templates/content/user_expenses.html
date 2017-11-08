@@ -1,0 +1,32 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <h1 class="page-header align-center-item">Single Expenses</h1>
+  <div class="">
+    <p class="align-center-item">
+      <a href="{% url 'single_expense' %}">Add Expense</a>
+    </p>
+    <div class="scrollable-view-expenses">
+      {% for activity in activities %}
+        {% if activity.validation == 1 %}
+          <p class="align-margin-left">
+            {{ activity.description }}
+          </p>
+        {% endif %}
+        {% if activity.validation == 2 %}
+          <p class="align-right-item align-margin-right">
+            {{ activity.description }} - {{ activity.expense.name }} -
+            <a href="{% url 'verify_expense_single' activity.id %}">Y</a>
+          </p>
+        {% endif %}
+        {% if activity.validation == 3 %}
+          <p class="align-right-item align-margin-right">
+            {{ activity.description }}
+          </p>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+
+
+{% endblock %}

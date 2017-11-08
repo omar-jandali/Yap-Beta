@@ -1,0 +1,16 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <h2>Add expense - {{ currentGroup.name }}</h2>
+  {% if message %}
+    <p>{{message}}</p>
+  {% endif %}
+  <form action="." method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% for expense in expenses %}
+      <p>{{ expense.user.username }}</p>
+    {% endfor %}
+    <input type="submit" name="submit" value="submit">
+  </form>
+{% endblock %}

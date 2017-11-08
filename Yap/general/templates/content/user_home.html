@@ -1,0 +1,46 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <h2 class="">{{ currentUser.username }}</h2>
+  <p><a href="{% url 'user_settings' %}">settings</a></p>
+  <p><a href="{% url 'user_profile' currentUser.username %}">profile</a></p>
+  <p><a href="{% url 'logout' %}">logout</a></p>
+  <h3>
+    Activity
+  </h3>
+  {% for activity in activities %}
+    {% if activity.expense == None %}
+      {% if activity.status == 1 %}
+        <strong>
+          <p>{{activity.description}}</p>
+        </strong>
+      {% endif %}
+      {% if activity.status == 2 %}
+        <p>{{activity.description}}</p>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  <p>
+    <a href="{% url 'clear_all_activities' %}">Mark all as read</a>
+  </p>
+  <div>
+    <h3>Requests</h3>
+    {% for request in requests %}
+      {% if request.requested.username == currentUser.username %}
+        <p>
+          {{ request.user }} -
+          <a href="{% url 'accept_request' request.user %}">Accept request</a>
+        </p>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <h3>Friends</h3>
+  {% for friend in friends %}
+    {% if friend.user == currentUser.username %}
+      <p>{{ friend.friend.username }}</p>
+    {% endif %}
+    {% if friend.friend.username == currentUser.username %}
+      <p>{{ friend.user }}</p>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

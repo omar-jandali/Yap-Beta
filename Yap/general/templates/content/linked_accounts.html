@@ -1,0 +1,20 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <h3>
+    <a href="{% url 'home_page' %}">Home</a>
+  </h3>
+  <p>testing page</p>
+  <p>
+    {{ accountsText }}
+  </p>
+  {% for account in accounts %}
+    <p>{{ account.id }}, {{account.user.username}}, {{ account.source_name }}, {{ account.source_id }},
+    {{ account.status }}
+    {% if account.status != 2 %}
+      <a href="{% url 'default_source' account.id %}">Set Default</a>
+    {% endif %}
+  </p>
+  {% endfor %}
+
+{% endblock %}

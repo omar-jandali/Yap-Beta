@@ -1,0 +1,23 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <h2>Add Single Expense </h2>
+  {% if message %}
+    <p>{{message}}</p>
+  {% endif %}
+  <form action="." method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% for friend in friends %}
+      {% if friend.user == currentUser.username %}
+        {{ friend.friend.username }}
+        <input name="{{friend.friend.username}}" value="checked" type="checkbox"><br>
+      {% endif %}
+      {% if friend.friend == currentUser %}
+        {{ friend.user }}
+        <input name="{{friend.user}}" value="checked" type="checkbox"><br>
+      {% endif %}
+    {% endfor %}
+    <input type="submit" name="submit" value="submit">
+  </form>
+{% endblock %}

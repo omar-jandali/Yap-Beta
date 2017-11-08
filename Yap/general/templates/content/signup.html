@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block standard %}
+
+    <h1>Signup</h1>
+    <p>{{ message }}</p>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" name="submit" value="submit">
+    </form>
+
+{% endblock %}

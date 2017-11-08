@@ -1,0 +1,26 @@
+{% extends "header.html" %}
+
+{% block content %}
+  <h1>Add members to {{group.name}}</h1>
+  {% if message %}
+    <p>{{message}}</p>
+  {% endif %}
+  <form action="." method="POST">
+    {% csrf_token %}
+    {% for friend in friends %}
+      {% if friend.user == currentUser.username %}
+        <p>
+          {{ friend.friend.username }}
+          <input type="checkbox" name="{{friend.friend.username}}" value="{{friend.friend.username}}">
+        </p>
+      {% endif %}
+      {% if friend.friend == currentUser %}
+        <p>
+          {{ friend.user }}
+          <input type="checkbox" name="{{friend.user}}" value="{{friend.user}}">
+        </p>
+      {% endif %}
+    {% endfor %}
+    <input type="submit" name="submit" value="submit">
+  </form>
+{% endblock %}
